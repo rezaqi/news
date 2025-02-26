@@ -1,4 +1,6 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:news/provider/myprovider.dart';
 import 'package:news/screen/home.dart';

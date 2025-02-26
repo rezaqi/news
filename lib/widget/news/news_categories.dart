@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news/bloc/get_home_bloc.dart';
+import 'package:news/bloc/states/news_states.dart';
 import 'package:news/class/app_colors.dart';
-import 'package:news/data/get_everything.dart';
 import 'package:news/model/everything_model.dart';
 import 'package:news/provider/myprovider.dart';
 import 'package:news/widget/news/custom/custom_news_post.dart';
 import 'package:provider/provider.dart';
 
 class NewsCategories extends StatelessWidget {
-  final String category;
-  const NewsCategories({
-    super.key,
-    required this.category,
-  });
+  final int index;
+  const NewsCategories({super.key, required this.index});
 
   @override
   Widget build(BuildContext context) {
@@ -20,21 +19,25 @@ class NewsCategories extends StatelessWidget {
 
     var provider = Provider.of<MyProvider>(context);
     bool isDark = provider.themeMode == ThemeMode.dark;
-    return FutureBuilder<EverythingModel>(
-      future: ApiEverything.getEverything(category),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        } else if (snapshot.hasError) {
-          return Text("error ${snapshot.error}");
+
+    return BlocConsumer<GetHomeBloc, HomeState>(
+      listener: (context, state) {},
+      builder: (context, state) {
+        if (state is NewsLoadingStates) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (state is NewsErrorStates) {
+          return const Center(child: Text("Error"));
         } else {
-          List<Articles> data = snapshot.data?.articles ?? [];
+          var bloc = BlocProvider.of<GetHomeBloc>(context);
+          List<Articles>? data = bloc.model?.articles ?? [];
+
+          if (data.isEmpty) {
+            return const Center(child: Text("Empty"));
+          }
 
           return Expanded(
             child: ListView.separated(
-              separatorBuilder: (context, index) => SizedBox(
-                height: 16,
-              ),
+              separatorBuilder: (context, index) => const SizedBox(height: 16),
               itemCount: data.length,
               itemBuilder: (context, index) => CustomNewsPost(
                 ontap: () {
@@ -42,14 +45,19 @@ class NewsCategories extends StatelessWidget {
                     context: context,
                     builder: (context) {
                       return Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          height: h * 0.6,
-                          width: w * 0.94,
-                          decoration: BoxDecoration(
-                              color: isDark ? AppColors.primary : Colors.white,
-                              borderRadius: BorderRadius.circular(16)),
-                          child: CustomNewsPost(
-                              isButtomSheet: true, data: data, i: index));
+                        margin: const EdgeInsets.only(bottom: 20),
+                        height: h * 0.6,
+                        width: w * 0.94,
+                        decoration: BoxDecoration(
+                          color: isDark ? AppColors.primary : Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: CustomNewsPost(
+                          isButtomSheet: true,
+                          data: data,
+                          i: index,
+                        ),
+                      );
                     },
                   );
                 },
