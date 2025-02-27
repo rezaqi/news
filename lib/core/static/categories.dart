@@ -1,4 +1,4 @@
-import 'package:news/class/app_image.dart';
+import 'package:news/core/class/app_image.dart';
 
 List<Map<String, dynamic>> categories = [
   {"name": "Science", "image": AppImages.science},

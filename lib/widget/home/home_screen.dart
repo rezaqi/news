@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/static/categories.dart';
+import 'package:news/core/static/categories.dart';
 import 'package:news/widget/home/background_image.dart';
 import 'package:news/widget/home/button_view_all.dart';
 import 'package:news/widget/home/text_title.dart';

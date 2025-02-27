@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:news/class/app_colors.dart';
+import 'package:news/core/class/app_colors.dart';
 
 AppBarTheme appBarTheme = AppBarTheme(
     iconTheme: IconThemeData(color: AppColors.primary),

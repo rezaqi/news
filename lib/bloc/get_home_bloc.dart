@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:news/bloc/states/news_states.dart';
-import 'package:news/model/everything_model.dart';
+import 'package:news/model/news_model.dart';
 import 'package:news/model/source_moddel.dart';
 import 'package:news/repository/home_repo.dart';
 

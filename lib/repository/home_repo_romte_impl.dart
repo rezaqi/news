@@ -2,8 +2,10 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-import 'package:news/model/everything_model.dart';
+import 'package:news/hive/cache_helper.dart';
+import 'package:news/model/news_model.dart';
 import 'package:news/model/source_moddel.dart';
+import 'package:news/model/source_model_hive.dart';
 import 'package:news/repository/home_repo.dart';
 
 class HomeRepositoryImpl implements HomeRepository {
@@ -28,6 +30,9 @@ class HomeRepositoryImpl implements HomeRepository {
     var json = jsonDecode(res.body);
     SourceModel sourceModel = SourceModel.fromJson(json);
     logger.f(sourceModel);
+    await HiveCacheHelper<List<SourceModelHive>>()
+        .saveBox(HiveCacheHelper.boxSources, sourceModel.sources ?? []);
+    logger.w("SAVE HIVE BOX DB");
     return sourceModel;
   }
 }

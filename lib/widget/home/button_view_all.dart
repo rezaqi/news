@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:news/class/app_colors.dart';
+import 'package:news/core/class/app_colors.dart';
 
 class ButtonViewAll extends StatelessWidget {
   final int i;

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:news/class/app_colors.dart';
-import 'package:news/model/source_moddel.dart';
+import 'package:news/core/class/app_colors.dart';
+import 'package:news/model/source_model_hive.dart';
 import 'package:provider/provider.dart';
 
 import '../../provider/myprovider.dart';
 
 class ListNewsCategories extends StatelessWidget {
-  final List<Sources> data;
+  final List<SourceModelHive> data;
   final void Function(int)? ontap;
   final int selected;
   const ListNewsCategories({

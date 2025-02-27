@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:news/class/app_colors.dart';
+import 'package:news/core/class/app_colors.dart';
 import 'package:news/provider/myprovider.dart';
 import 'package:news/widget/drawer/drawer_widget.dart';
 import 'package:news/widget/home/home_screen.dart';

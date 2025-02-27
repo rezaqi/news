@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:news/core/static/categories.dart';
 import 'package:news/provider/myprovider.dart';
-import 'package:news/static/categories.dart';
 import 'package:provider/provider.dart';
 
 class BackgroundImage extends StatelessWidget {

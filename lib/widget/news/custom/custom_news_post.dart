@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:news/class/app_colors.dart';
-import 'package:news/custom/custom_button.dart';
-import 'package:news/model/everything_model.dart';
+import 'package:news/core/class/app_colors.dart';
+import 'package:news/core/custom/custom_button.dart';
+import 'package:news/model/news_model.dart';
 import 'package:news/provider/myprovider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
